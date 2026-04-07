@@ -1,0 +1,23 @@
+{
+  "name": "motivation_quotes",
+  "version": "1.0.0",
+  "description": "A simple web app that displays motivational quotes with background images. For individuals that like to read, the web app will serve as a hub for motivational quotes to keep users glued to their goals. My goal to work on this project is to learn how to work with third party API and generally how that logic is applied.",
+  "main": "server.js",
+  "$schema": "https://json.schemastore.org/package",
+  "scripts": {
+    "dev": "nodemon server.js",
+    "start": "node server.js"
+  },
+  "keywords": [],
+  "author": "Louis Chilumba",
+  "license": "ISC",
+  "packageManager": "pnpm@10.33.0",
+  "dependencies": {
+    "dotenv": "^17.4.1",
+    "express": "^5.2.1",
+    "node-fetch": "^3.3.2"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.14"
+  }
+}
