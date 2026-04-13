@@ -1,17 +1,69 @@
 const fetch = require("node-fetch");
 
 const getQuote = async (req, res) => {
-  try {
-    const response = await fetch("https://zenquotes.io/api/random");
-    const data = await response.json();
+  let quote = "Could not fetch quote";
+  let author = "Unknown";
+  let image = "https://source.unsplash.com/1600x900/?nature";
 
-    res.json({
-      quote: data[0].q,
-      author: data[0].a
-    });
-  } catch (error) {
-    res.status(500).json({ error: "Failed to fetch quote" });
+  // -------------------------
+  // 1. FETCH QUOTE (ZenQuotes)
+  // -------------------------
+  try {
+    const quoteRes = await fetch("https://zenquotes.io/api/random");
+
+    if (!quoteRes.ok) {
+      throw new Error(`ZenQuotes HTTP error: ${quoteRes.status}`);
+    }
+
+    const quoteData = await quoteRes.json();
+
+    // ZenQuotes returns an ARRAY
+    if (Array.isArray(quoteData) && quoteData.length > 0) {
+      quote = quoteData[0].q || quote;
+      author = quoteData[0].a || author;
+    }
+  } catch (err) {
+    console.error("Quote API failed:", err.message);
   }
+
+  // -------------------------
+  // 2. FETCH IMAGE (Unsplash)
+  // -------------------------
+  try {
+    if (!process.env.UNSPLASH_ACCESS_KEY) {
+      throw new Error("Missing UNSPLASH_ACCESS_KEY");
+    }
+
+    const imageRes = await fetch(
+      "https://api.unsplash.com/photos/random?query=nature&orientation=landscape",
+      {
+        headers: {
+          Authorization: `Client-ID ${process.env.UNSPLASH_ACCESS_KEY}`,
+        },
+      }
+    );
+
+    if (!imageRes.ok) {
+      throw new Error(`Unsplash HTTP error: ${imageRes.status}`);
+    }
+
+    const imageData = await imageRes.json();
+
+    if (imageData?.urls?.regular) {
+      image = imageData.urls.regular;
+    }
+  } catch (err) {
+    console.error("Unsplash API failed:", err.message);
+  }
+
+  // -------------------------
+  // RESPONSE
+  // -------------------------
+  res.json({
+    quote,
+    author,
+    image,
+  });
 };
 
 module.exports = { getQuote };

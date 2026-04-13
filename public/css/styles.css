@@ -1,16 +1,148 @@
 body {
+  margin: 0;
   font-family: Arial, sans-serif;
+  color: white;
+  background-size: cover;
+  background-position: center;
+}
+
+/* HEADER */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 20px;
+  background: rgba(0,0,0,0.7);
+}
+
+.header h1 {
+  margin: 0;
+  font-size: 20px;
+}
+
+.header-buttons button {
+  margin-left: 10px;
+}
+
+/* MAIN */
+.main {
+  height: calc(100vh - 120px);
+}
+
+/* BACKGROUND AREA */
+.background-area {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* OVERLAY */
+.overlay {
+  background: rgba(0,0,0,0.5);
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* QUOTE CARD */
+.quote-card {
+  background: rgba(0,0,0,0.7);
+  padding: 30px;
+  border-radius: 10px;
+  max-width: 700px;
   text-align: center;
-  background: #222;
-  color: #fff;
 }
 
-.container {
-  margin-top: 100px;
+#quote {
+  font-size: 26px;
+  font-style: italic;
 }
 
+#author {
+  margin-top: 10px;
+  font-size: 18px;
+  opacity: 0.8;
+}
+
+/* STATUS */
+.status {
+  position: absolute;
+  bottom: 80px;
+  text-align: center;
+}
+
+/* BUTTONS */
 button {
-  padding: 10px 20px;
-  margin-top: 20px;
+  padding: 10px 15px;
   cursor: pointer;
+  border: none;
+  border-radius: 5px;
+  background: #4A90E2;
+  color: white;
+}
+
+button:hover {
+  background: #357ABD;
+}
+
+/* FOOTER */
+.footer {
+  text-align: center;
+  padding: 10px;
+  background: rgba(0,0,0,0.7);
+}
+
+/* UTIL */
+.hidden {
+  display: none;
+}
+
+/* 📱 MOBILE VIEW (matches wireframe stack) */
+@media (max-width: 768px) {
+
+  .header {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .header-buttons {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .header-buttons button {
+    width: 100%;
+    margin: 5px 0;
+  }
+
+  .quote-card {
+    margin: 20px;
+  }
+
+}
+
+/*Copy to clipboard*/
+
+.toast {
+  position: fixed;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(0, 0, 0, 0.85);
+  color: white;
+  padding: 12px 20px;
+  border-radius: 8px;
+  font-size: 14px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.toast.show {
+  opacity: 1;
+  transform: translateX(-50%) translateY(-10px);
 }

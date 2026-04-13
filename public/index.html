@@ -7,14 +7,45 @@
 </head>
 <body>
 
-  <div class="container">
-    <h1>Quote Generator</h1>
-    <p id="quote">Click the button to generate a quote</p>
-    <p id="author"></p>
+  <!-- Header (Desktop style) -->
+  <header class="header">
+    <h1>QUOTE GENERATOR</h1>
+    <div class="header-buttons">
+      <button id="generateBtn">⟳ Generate Quote</button>
+      <button id="copyBtn">📋 Copy</button>
+      <button id="shareBtn">🔗 Share</button>
+    </div>
+  </header>
 
-    <button id="generateBtn">Generate Quote</button>
-  </div>
+  <!-- Main Content -->
+  <main class="main">
 
+    <!-- Background Image Area -->
+    <div class="background-area">
+      <div class="overlay">
+
+        <!-- Quote Card -->
+        <div class="quote-card">
+          <p id="quote">Loading...</p>
+          <p id="author"></p>
+        </div>
+
+        <!-- States -->
+        <div class="status">
+          <p id="loading" class="hidden">Loading...</p>
+          <p id="error" class="hidden">Something went wrong. Please try again.</p>
+        </div>
+
+      </div>
+    </div>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <p>© 2026 Quote Generator</p>
+  </footer>
+  <div id="toast" class="toast">Quote copied to clipboard</div>
   <script src="js/app.js"></script>
 </body>
 </html>
